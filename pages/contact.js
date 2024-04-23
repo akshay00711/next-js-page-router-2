@@ -2,8 +2,12 @@ import { Fragment } from 'react';
 import Head from 'next/head';
 
 import ContactForm from '../components/contact/contact-form';
+import Layout from '../components/layout/layout';
+import { useSession } from 'next-auth/react';
 
-function ContactPage() {
+export default function ContactPage() {
+  const { data: session } = useSession()
+  console.log( "Session ContactPage :: ",session)
   return (
     <Fragment>
       <Head>
@@ -15,4 +19,4 @@ function ContactPage() {
   );
 }
 
-export default ContactPage;
+ContactPage.getLayout = page => <Layout>{page}</Layout>

@@ -3,8 +3,14 @@ import { Fragment } from 'react';
 
 import AllPosts from '../../components/posts/all-posts';
 import { getAllPosts } from '../../lib/posts-util';
+import Layout from '../../components/layout/layout';
+import { useSession } from 'next-auth/react';
 
-function AllPostsPage(props) {
+export default function AllPostsPage(props) {
+
+  const { data: session } = useSession()
+  console.log( "Session AllPostsPage :: ",session)
+
   return (
     <Fragment>
       <Head>
@@ -29,4 +35,4 @@ export function getStaticProps() {
   };
 }
 
-export default AllPostsPage;
+AllPostsPage.getLayout = page => <Layout>{page}</Layout>
